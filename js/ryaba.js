@@ -1,4 +1,12 @@
 const dataURL = "https://api.myjson.com/bins/jcmhn";
+const fields = [ 
+    {var1: ''}, 
+    {var2: ''}, 
+    {var3: ''}, 
+    {var4: ''}, 
+    {var5: ''}, 
+    {var6: ''}, 
+    {speach: ''}];
 
 function handleButton() {
   // взять данные по dataUrl, вытащить их и передать в handleData
@@ -6,25 +14,15 @@ function handleButton() {
     }
 
 function handleData(data) {
-  const var1 = $("input[name=var1]").val();
-  const var2 = $("input[name=var2]").val();
-  const var3 = $("input[name=var3]").val();
-  const var4 = $("input[name=var4]").val();
-  const var5 = $("input[name=var5]").val();
-  const var6 = $("input[name=var6]").val();
-  const speach = $("input[name=speach]").val();
 
   let text = data.text.join('<br>');
-  //const var1 = $("input[name=var1]")[0].default()
 
-  // надо сделать так чтобы сообщения подменились на значения из формы
-  text = text.replace(/{var1}/g, var1);
-  text = text.replace(/{var2}/g, var2);
-  text = text.replace(/{var3}/g, var3);
-  text = text.replace(/{var4}/g, var4);
-  text = text.replace(/{var5}/g, var5);
-  text = text.replace(/{var6}/g, var6);
-  text = text.replace(/{speach}/g, speach);
+  fields.forEach( (field) => {
+    for (let key in field) {
+      field[key] = $(`input[name=${key}]`).val();
+      text = text.replace(new RegExp(`{${key}}`, 'g'), field[key]);
+    };
+  });
 
   $("#result").html(text);
 }
