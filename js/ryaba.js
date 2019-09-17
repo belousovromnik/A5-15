@@ -2,13 +2,8 @@ const dataURL = "https://api.myjson.com/bins/jcmhn";
 
 function handleButton() {
   // взять данные по dataUrl, вытащить их и передать в handleData
-  $.getJSON(dataURL, 
-    function (data) {
-      handleData(data);
-      console.log(data);
+  $.getJSON(dataURL, handleData);
     }
-);
-}
 
 function handleData(data) {
   const var1 = $("input[name=var1]").val();
