@@ -14,7 +14,7 @@ function handleData(data) {
   const var6 = $("input[name=var6]").val();
   const speach = $("input[name=speach]").val();
 
-  let text = data.text.join('. ');
+  let text = data.text.join('<br>');
   //const var1 = $("input[name=var1]")[0].default()
 
   // надо сделать так чтобы сообщения подменились на значения из формы
@@ -26,7 +26,7 @@ function handleData(data) {
   text = text.replace(/{var6}/g, var6);
   text = text.replace(/{speach}/g, speach);
 
-  $("#result").text(text);
+  $("#result").html(text);
 }
 
 function init() {
